@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MindPulseProfile — How Your Mind Works</title>
+  <meta name="description" content="Take a fast, free 45-question snapshot of your personality and thinking style. No sign-ups. No tracking. Instant results.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero" id="hero">
+    <div class="hero-inner">
+      <h1>How Your Mind Works</h1>
+      <p class="hero-subhead">A fast, free snapshot of your personality and thinking style.</p>
+      <p class="hero-trust">No accounts. No tracking. Your answers stay in your browser.</p>
+      <a href="#quiz-container" class="cta" id="cta-start">Start the 6-Minute Quiz</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="positioning" aria-labelledby="positioning-heading">
+      <div class="content-wrap">
+        <h2 id="positioning-heading">What This Is — and Isn’t</h2>
+        <p>MindPulseProfile is a practical snapshot of how you tend to think and relate to the world. It is not a diagnosis, not an official intelligence test, and not a fixed personality label. The questions and results are inspired by established psychological models, simplified for quick self-reflection. Use it as a starting point for curiosity, not as a clinical or professional assessment.</p>
+        <p class="positioning-tone">We keep the tone analytical and credible. No hype, no buzz — just a clear picture you can use to reflect on your own patterns.</p>
+      </div>
+    </section>
+
+    <section class="how-it-works" aria-labelledby="how-heading">
+      <div class="content-wrap">
+        <h2 id="how-heading">How It Works</h2>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num" aria-hidden="true">1</span>
+            <div class="step-content">
+              <h3>Answer 45 short questions</h3>
+              <p>Quick, single-topic items. No long forms.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">2</span>
+            <div class="step-content">
+              <h3>See a mid-quiz preview</h3>
+              <p>A brief snapshot before you finish.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">3</span>
+            <div class="step-content">
+              <h3>Get your full profile instantly</h3>
+              <p>Results in your browser, no wait.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="what-you-get" aria-labelledby="what-heading">
+      <div class="content-wrap">
+        <h2 id="what-heading">What You’ll Get</h2>
+        <ul class="modules">
+          <li class="module">
+            <h3>Personality Pulse</h3>
+            <p>Five simplified traits that reflect how you tend to show up in everyday situations.</p>
+          </li>
+          <li class="module">
+            <h3>Cognitive Strengths</h3>
+            <p>Pattern, verbal, and strategic tendencies — a snapshot of how you process information.</p>
+          </li>
+          <li class="module">
+            <h3>Work & Learning Style</h3>
+            <p>How you prefer to focus, learn, and get things done.</p>
+          </li>
+          <li class="module">
+            <h3>Collaboration Tendencies</h3>
+            <p>How you tend to work with others and communicate.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="quiz-placeholder" id="quiz-container" aria-labelledby="quiz-heading">
+      <div class="content-wrap">
+        <h2 id="quiz-heading">The Quiz</h2>
+        <p class="quiz-intro">Click below to begin. Your answers are not sent to any server and are not stored.</p>
+        <div class="quiz-engine-placeholder" id="quiz-engine-placeholder" aria-live="polite">
+          <!-- Quiz start, progress, questions, teaser, and results are injected by quiz.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="content-wrap">
+      <p>MindPulseProfile — How your mind works. No sign-ups. No tracking.</p>
+    </div>
+  </footer>
+
+  <script src="quiz-data.js"></script>
+  <script src="app.js"></script>
+  <script src="quiz.js"></script>
+  <script>
+    document.getElementById('cta-start').addEventListener('click', function(e) {
+      var target = document.getElementById('quiz-container');
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  </script>
+</body>
+</html>
