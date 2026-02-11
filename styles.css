@@ -1,4 +1,7 @@
-/* MindPulseProfile — Phase 0: Mobile-first, neutral, minimal */
+/* MindPulseProfile — Mobile-first, neutral, minimal
+   Styling: Clean vertical rhythm. Max-width centered layout. Large readable text.
+   Smooth section spacing. Bars animate width on render (JS). No heavy animations.
+   No emoji. No flashy gradients. Results: skimmable, credible, 2–3 ad slots, archetype at top. */
 
 :root {
   --bg: #f8f7f5;
@@ -538,69 +541,322 @@ body {
   50% { opacity: 1; transform: scale(1); }
 }
 
-/* ----- Results placeholder ----- */
+/* ----- Results page container (Phase 2) ----- */
 .quiz-results-placeholder {
   display: none;
-  padding: var(--space-lg);
-  background: var(--step-bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  padding: 0;
+  background: transparent;
 }
 
 .quiz-results-placeholder.quiz-visible {
   display: block;
 }
 
-.quiz-results-title {
+#results {
+  display: block;
+  scroll-margin-top: 1rem;
+}
+
+#results .content-wrap {
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+/* Vertical spacing: each section and ad slot get consistent gap */
+#results > .result-hero,
+#results > .personality-pulse,
+#results > .cognitive-strengths,
+#results > .work-style,
+#results > .growth-edges,
+#results > .share-block,
+#results > .pdf-teaser {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+#results > .result-hero {
+  padding-top: var(--space-lg);
+}
+
+#results > .ad-slot {
+  min-height: 2rem;
+  margin: var(--space-xl) 0;
+  padding: 0;
+  /* Visually separated from sections above and below */
+}
+
+#results > .ad-slot.bottom {
+  margin-bottom: var(--space-lg);
+}
+
+/* Result hero (dopamine first: H2, subheading, summary) */
+.result-hero {
+  background: var(--bg-section);
+  border-bottom: 1px solid var(--border);
+}
+
+.result-hero-title {
   margin: 0 0 var(--space-sm);
-  font-size: 1.25rem;
+  font-size: clamp(1.5rem, 4vw, 1.75rem);
   font-weight: 600;
+  line-height: 1.3;
   color: var(--text);
 }
 
-.quiz-results-archetype {
+.result-hero-subheading {
   margin: 0 0 var(--space-md);
-  font-size: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.result-hero-summary {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.result-hero-text {
+  margin: 0;
+  font-size: 1.125rem;
   line-height: 1.5;
   color: var(--text);
   font-weight: 500;
 }
 
-.quiz-results-section {
-  margin-bottom: var(--space-lg);
-}
-
-.quiz-results-section:last-child {
-  margin-bottom: 0;
-}
-
-.quiz-results-head {
-  margin: 0 0 var(--space-sm);
-  font-size: 0.9375rem;
+/* Section titles and body */
+.results-section-title {
+  margin: 0 0 var(--space-md);
+  font-size: 1.125rem;
   font-weight: 600;
+  color: var(--text);
+}
+
+.results-body {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
   color: var(--text-muted);
 }
 
-.quiz-results-scores {
+/* Personality Pulse: trait bars with label + fill + one-sentence summary */
+.personality-pulse .trait {
+  margin-bottom: var(--space-lg);
+}
+
+.personality-pulse .trait:last-child {
+  margin-bottom: 0;
+}
+
+.trait-label {
+  display: block;
+  margin: 0 0 var(--space-xs);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.trait .bar {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: var(--space-xs);
+}
+
+.trait .fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.4s ease-out;
+}
+
+.trait-summary {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+/* Personality & cognitive sections */
+.personality-pulse {
+  background: var(--bg);
+}
+
+.cognitive-strengths {
+  background: var(--bg-section);
+  border-top: 1px solid var(--border);
+}
+
+/* Cognitive Strengths: three modules (Pattern, Verbal, Strategic) */
+.cognitive-module {
+  margin-bottom: var(--space-xl);
+}
+
+.cognitive-module:last-child {
+  margin-bottom: 0;
+}
+
+.cognitive-module h3 {
+  margin: 0 0 var(--space-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cognitive-module .bar {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: var(--space-sm);
+}
+
+.cognitive-module .fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  transition: width 0.4s ease-out;
+}
+
+.cognitive-module p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.work-style,
+.growth-edges {
+  background: var(--bg);
+}
+
+/* Work & Learning Style: bullet modules */
+.work-style-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.quiz-result-row {
+.work-style-module {
+  margin-bottom: var(--space-lg);
+}
+
+.work-style-module:last-child {
+  margin-bottom: 0;
+}
+
+.work-style-module h3 {
+  margin: 0 0 var(--space-xs);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.work-style-module p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 42rem;
+}
+
+.share-block {
+  background: var(--bg-section);
+  border-top: 1px solid var(--border);
+}
+
+.pdf-teaser {
+  background: var(--bg);
+}
+
+.pdf-teaser-title {
+  margin: 0 0 var(--space-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pdf-teaser-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Growth Edges: Strength + Watch for per dimension */
+.growth-edge {
+  margin-bottom: var(--space-lg);
+}
+
+.growth-edge:last-child {
+  margin-bottom: 0;
+}
+
+.growth-edge h3 {
+  margin: 0 0 var(--space-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.growth-edge p {
+  margin: 0 0 var(--space-xs);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.growth-edge p:last-child {
+  margin-bottom: 0;
+}
+
+/* Share block */
+.share-block-title {
+  margin: 0 0 var(--space-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.share-summary-text {
+  margin: 0 0 var(--space-md);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.share-copy-btn {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Score rows (bars) */
+.results-scores {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.result-score-row {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-sm);
 }
 
-.quiz-result-label {
+.result-score-row:last-child {
+  margin-bottom: 0;
+}
+
+.result-score-label {
   flex: 0 0 8rem;
   font-size: 0.875rem;
   color: var(--text-muted);
 }
 
-.quiz-result-bar-wrap {
+.result-bar-wrap {
   flex: 1;
   height: 8px;
   background: var(--border);
@@ -608,18 +864,32 @@ body {
   overflow: hidden;
 }
 
-.quiz-result-bar {
+.result-bar {
   height: 100%;
   background: var(--accent);
   border-radius: 4px;
   transition: width 0.35s ease-out;
 }
 
-.quiz-result-pct {
+.result-score-pct {
   flex: 0 0 2.5rem;
   font-size: 0.8125rem;
   color: var(--text-muted);
   text-align: right;
+}
+
+/* Ad slots: layout only, no tracking. Ads appear only on results page. */
+.ad-slot {
+  display: block;
+  background: transparent;
+}
+
+/* Legacy fallback classes (if any inline refs remain) */
+.quiz-results-title {
+  margin: 0 0 var(--space-sm);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
 }
 
 .quiz-results-intro {

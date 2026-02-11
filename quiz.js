@@ -167,41 +167,145 @@
     hide(byId('quiz-questions-wrap'));
     var el = byId('quiz-results-placeholder');
     if (result && result.personality && result.cognitive) {
-      renderResultContent(el, result);
+      renderResultsPage(el, result);
     } else {
       el.innerHTML =
-        '<h3 class="quiz-results-title">Your profile</h3>' +
-        '<p class="quiz-results-intro">Your full snapshot will appear here once the scoring engine is implemented.</p>' +
-        '<ul class="quiz-results-modules"><li><strong>Personality Pulse</strong> — Placeholder</li><li><strong>Cognitive Strengths</strong> — Placeholder</li></ul>';
+        '<section id="results">' +
+          '<section class="result-hero"><div class="content-wrap"><p class="result-hero-text">Complete all 45 questions to see your full snapshot.</p></div></section>' +
+          '<section class="personality-pulse"></section>' +
+          '<div class="ad-slot" data-position="mid-1"></div>' +
+          '<section class="cognitive-strengths"></section>' +
+          '<section class="work-style"></section>' +
+          '<div class="ad-slot" data-position="mid-2"></div>' +
+          '<section class="growth-edges"></section>' +
+          '<section class="share-block"></section>' +
+          '<section class="pdf-teaser"></section>' +
+          '<div class="ad-slot bottom" data-position="bottom"><!-- Future sticky AdSense banner --></div>' +
+        '</section>';
     }
     show(el);
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  function renderResultContent(el, result) {
+  function renderResultsPage(el, result) {
     var p = result.personality;
     var c = result.cognitive;
     var traitLabels = { O: 'Curiosity', C: 'Discipline', E: 'Social Energy', A: 'Cooperation', N: 'Emotional Reactivity' };
     var axisLabels = { pattern: 'Pattern Reasoning', verbal: 'Verbal Framing', strategic: 'Strategic Thinking' };
-    var html = '<h3 class="quiz-results-title">Your profile</h3>' +
-      '<p class="quiz-results-archetype">' + escapeHtml(result.archetype || '') + '</p>' +
-      '<section class="quiz-results-section" aria-labelledby="quiz-results-personality-head">' +
-        '<h4 id="quiz-results-personality-head" class="quiz-results-head">Personality Pulse</h4>' +
-        '<ul class="quiz-results-scores">';
+
+    var arch = result.archetype;
+    var archName = (arch && arch.name) ? arch.name : (typeof arch === 'string' ? arch.split(' — ')[0] || arch : '');
+    var archDesc = (arch && arch.descriptor) ? arch.descriptor : (typeof arch === 'string' ? arch.split(' — ')[1] || '' : '');
+    var summary = result.summary || '';
+
+    var heroHtml = '<div class="content-wrap">' +
+      '<h2 class="result-hero-title">You\'re a ' + escapeHtml(archName) + '</h2>' +
+      '<p class="result-hero-subheading">' + escapeHtml(archDesc) + '</p>' +
+      '<p class="result-hero-summary">' + escapeHtml(summary) + '</p>' +
+      '</div>';
+
+    var traitSummaries = result.traitSummaries || {};
+    var personalityHtml = '<div class="content-wrap">' +
+      '<h2 class="results-section-title">Personality Pulse</h2>';
     ['O', 'C', 'E', 'A', 'N'].forEach(function (t) {
       var v = p[t] != null ? p[t] : 0;
-      html += '<li class="quiz-result-row"><span class="quiz-result-label">' + escapeHtml(traitLabels[t]) + '</span><div class="quiz-result-bar-wrap"><div class="quiz-result-bar" style="width:' + v + '%"></div></div><span class="quiz-result-pct">' + v + '%</span></li>';
+      var summaryText = traitSummaries[t] || '';
+      personalityHtml += '<div class="trait">' +
+        '<label class="trait-label">' + escapeHtml(traitLabels[t]) + '</label>' +
+        '<div class="bar"><div class="fill" style="width:0" data-width="' + v + '"></div></div>' +
+        '<p class="trait-summary">' + escapeHtml(summaryText) + '</p>' +
+        '</div>';
     });
-    html += '</ul></section>' +
-      '<section class="quiz-results-section" aria-labelledby="quiz-results-cognitive-head">' +
-        '<h4 id="quiz-results-cognitive-head" class="quiz-results-head">Cognitive Strengths</h4>' +
-        '<ul class="quiz-results-scores">';
+    personalityHtml += '</div>';
+
+    var cognitiveExplanations = result.cognitiveExplanations || {};
+    var cognitiveHtml = '<div class="content-wrap"><h2 class="results-section-title">Cognitive Strengths</h2>';
     ['pattern', 'verbal', 'strategic'].forEach(function (a) {
       var v = c[a] != null ? c[a] : 0;
-      html += '<li class="quiz-result-row"><span class="quiz-result-label">' + escapeHtml(axisLabels[a]) + '</span><div class="quiz-result-bar-wrap"><div class="quiz-result-bar" style="width:' + v + '%"></div></div><span class="quiz-result-pct">' + v + '%</span></li>';
+      var title = axisLabels[a];
+      var explanation = cognitiveExplanations[a] || 'Your thinking style on this dimension is reflected in your responses.';
+      cognitiveHtml += '<div class="cognitive-module">' +
+        '<h3>' + escapeHtml(title) + '</h3>' +
+        '<div class="bar"><div class="fill" style="width:0" data-width="' + v + '"></div></div>' +
+        '<p>' + escapeHtml(explanation) + '</p>' +
+        '</div>';
     });
-    html += '</ul></section>';
-    el.innerHTML = html;
+    cognitiveHtml += '</div>';
+
+    var workModules = result.workStyleModules || {};
+    var workStyleHtml = '<div class="content-wrap"><h2 class="results-section-title">Work & Learning Style</h2><ul class="work-style-list">' +
+      '<li class="work-style-module"><h3>Decision Style</h3><p>' + escapeHtml(workModules.decisionStyle || '') + '</p></li>' +
+      '<li class="work-style-module"><h3>Collaboration Preference</h3><p>' + escapeHtml(workModules.collaborationPreference || '') + '</p></li>' +
+      '<li class="work-style-module"><h3>Learning Mode</h3><p>' + escapeHtml(workModules.learningMode || '') + '</p></li>' +
+      '<li class="work-style-module"><h3>Problem-Solving Approach</h3><p>' + escapeHtml(workModules.problemSolvingApproach || '') + '</p></li>' +
+      '</ul></div>';
+    var growthEdges = result.growthEdges || [];
+    var growthHtml = '<div class="content-wrap"><h2 class="results-section-title">Growth Edges</h2>';
+    growthEdges.forEach(function (edge) {
+      growthHtml += '<div class="growth-edge">' +
+        '<h3>' + escapeHtml(edge.dimension || 'Growth Edge') + '</h3>' +
+        '<p><strong>Strength:</strong> ' + escapeHtml(edge.strength || '') + '</p>' +
+        '<p><strong>Watch for:</strong> ' + escapeHtml(edge.watchFor || '') + '</p>' +
+        '</div>';
+    });
+    if (growthEdges.length === 0) growthHtml += '<p class="results-body">Complete the quiz to see growth edges based on your profile.</p>';
+    growthHtml += '</div>';
+
+    var shareSummaryText = 'I just took MindPulseProfile and got ' + (archName || 'my snapshot') + '. Surprisingly accurate.';
+    var shareHtml = '<div class="content-wrap">' +
+      '<h3 class="share-block-title">Share Your Snapshot</h3>' +
+      '<p class="share-summary-text">' + escapeHtml(shareSummaryText) + '</p>' +
+      '<button type="button" class="cta share-copy-btn">Copy Summary</button>' +
+      '</div>';
+    var pdfHtml = '<div class="content-wrap"><h3 class="pdf-teaser-title">Download Your Profile</h3><p class="pdf-teaser-text">Get a clean, printable version of your snapshot.</p></div>';
+
+    el.innerHTML =
+      '<section id="results">' +
+        '<section class="result-hero">' + heroHtml + '</section>' +
+        '<section class="personality-pulse">' + personalityHtml + '</section>' +
+        '<div class="ad-slot" data-position="mid-1"><!-- AdSense slot will go here later --></div>' +
+        '<section class="cognitive-strengths">' + cognitiveHtml + '</section>' +
+        '<section class="work-style">' + workStyleHtml + '</section>' +
+        '<div class="ad-slot" data-position="mid-2"><!-- AdSense slot --></div>' +
+        '<section class="growth-edges">' + growthHtml + '</section>' +
+        '<section class="share-block">' + shareHtml + '</section>' +
+        '<section class="pdf-teaser">' + pdfHtml + '</section>' +
+        '<div class="ad-slot bottom" data-position="bottom"><!-- Future sticky AdSense banner --></div>' +
+      '</section>';
+    attachShareCopy(el);
+    animateResultBars(el);
+  }
+
+  function animateResultBars(resultsContainer) {
+    if (!resultsContainer) return;
+    var fills = resultsContainer.querySelectorAll('.fill[data-width]');
+    if (!fills.length) return;
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        for (var i = 0; i < fills.length; i++) {
+          var w = fills[i].getAttribute('data-width');
+          if (w !== null) fills[i].style.width = w + '%';
+        }
+      });
+    });
+  }
+
+  function attachShareCopy(resultsContainer) {
+    var shareSection = resultsContainer && resultsContainer.querySelector('.share-block');
+    if (!shareSection) return;
+    var shareP = shareSection.querySelector('.share-summary-text');
+    var copyBtn = shareSection.querySelector('.share-copy-btn');
+    if (copyBtn && shareP) {
+      copyBtn.addEventListener('click', function () {
+        var text = shareP.textContent || '';
+        if (typeof navigator.clipboard !== 'undefined' && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            copyBtn.textContent = 'Copied';
+            setTimeout(function () { copyBtn.textContent = 'Copy Summary'; }, 2000);
+          });
+        }
+      });
+    }
   }
 
   function advanceToNext() {
