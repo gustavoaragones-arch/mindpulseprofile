@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace with your live site URL if different (e.g. https://gustavoaragones-arch.github.io/mindpulseprofile/)
+Sitemap: https://mindpulseprofile.com/sitemap.xml

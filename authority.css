@@ -1,0 +1,103 @@
+/* Authority pages: same design system as main site, no ads */
+.authority-nav {
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-section);
+  border-bottom: 1px solid var(--border);
+}
+
+.authority-nav .content-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.authority-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9375rem;
+}
+
+.authority-nav a:hover {
+  color: var(--accent);
+}
+
+.authority-main {
+  padding: var(--space-xl) 0;
+}
+
+.authority-main .content-wrap {
+  max-width: var(--max-width);
+}
+
+.authority-main h1 {
+  font-size: clamp(1.5rem, 4vw, 1.875rem);
+  font-weight: 600;
+  margin: 0 0 var(--space-md);
+  line-height: 1.3;
+}
+
+.authority-main h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: var(--space-lg) 0 var(--space-sm);
+  line-height: 1.3;
+}
+
+.authority-main h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: var(--space-md) 0 var(--space-xs);
+}
+
+.authority-main p {
+  margin: 0 0 var(--space-md);
+  line-height: 1.65;
+}
+
+.authority-main ul, .authority-main ol {
+  margin: 0 0 var(--space-md);
+  padding-left: 1.5rem;
+  line-height: 1.65;
+}
+
+.cta-section {
+  margin: var(--space-xl) 0;
+  padding: var(--space-lg);
+  background: var(--step-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.cta-section h2, .cta-section h3 {
+  margin: 0 0 var(--space-sm);
+}
+
+.cta-section p {
+  margin: 0 0 var(--space-md);
+}
+
+.cta-section .cta {
+  margin: 0;
+}
+
+.faq-section {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+
+.faq-section h2 {
+  margin-top: 0;
+}
+
+.faq-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: var(--space-md) 0 var(--space-xs);
+}
+
+.faq-section h3 + p {
+  margin-top: 0;
+}
