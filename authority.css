@@ -148,3 +148,38 @@
 .footer-explore a:hover {
   text-decoration: underline;
 }
+
+/* Comparison tables */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-lg) 0;
+  font-size: 0.9375rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+.comparison-table th {
+  background: var(--step-bg);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.comparison-table td {
+  color: var(--text-muted);
+}
+
+.comparison-table tr:nth-child(even) td {
+  background: rgba(240, 238, 235, 0.5);
+}
+
+@media (max-width: 640px) {
+  .comparison-table { font-size: 0.875rem; }
+  .comparison-table th,
+  .comparison-table td { padding: var(--space-xs) var(--space-sm); }
+}
