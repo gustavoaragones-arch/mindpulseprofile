@@ -101,3 +101,50 @@
 .faq-section h3 + p {
   margin-top: 0;
 }
+
+/* Content ad slots: after intro, between sections, before CTA. No ads in quiz. */
+.content-ad-slot {
+  display: block;
+  min-height: 90px;
+  margin: var(--space-lg) 0;
+  background: var(--step-bg);
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+}
+
+/* Footer Explore More (internal linking) */
+.site-footer .footer-explore {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border);
+}
+
+.footer-explore h3 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-sm);
+  color: var(--text-muted);
+}
+
+.footer-explore ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.footer-explore li {
+  margin: 0;
+}
+
+.footer-explore a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.footer-explore a:hover {
+  text-decoration: underline;
+}
