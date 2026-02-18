@@ -183,3 +183,76 @@
   .comparison-table th,
   .comparison-table td { padding: var(--space-xs) var(--space-sm); }
 }
+
+/* Cognitive table (conflict trigger matrix, etc.) */
+.cognitive-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-lg) 0;
+  font-size: 0.9375rem;
+}
+
+.cognitive-table th,
+.cognitive-table td {
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+.cognitive-table th {
+  background: var(--step-bg);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cognitive-table td {
+  color: var(--text-muted);
+}
+
+.cognitive-table tr:nth-child(even) td {
+  background: rgba(240, 238, 235, 0.5);
+}
+
+@media (max-width: 640px) {
+  .cognitive-table { font-size: 0.875rem; }
+  .cognitive-table th,
+  .cognitive-table td { padding: var(--space-xs) var(--space-sm); }
+  .cognitive-table { overflow-x: auto; display: block; }
+}
+
+/* Ad containers (Phase 5A behavioral pages) */
+.ad-container {
+  display: block;
+  min-height: 90px;
+  margin: var(--space-lg) 0;
+  background: var(--step-bg);
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+}
+
+/* Snippet answer (featured snippet block) */
+.snippet-answer {
+  font-size: 1rem;
+  line-height: 1.65;
+  margin: 0 0 var(--space-md);
+  padding: var(--space-md);
+  background: var(--step-bg);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.breadcrumb a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
