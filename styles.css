@@ -1001,6 +1001,48 @@ body {
   text-align: center;
 }
 
+/* Results disclaimer (Phase 6) */
+.results-disclaimer {
+  padding: var(--space-lg) 0;
+  background: var(--step-bg);
+  border-top: 1px solid var(--border);
+}
+
+.results-disclaimer-title {
+  margin: 0 0 var(--space-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.results-disclaimer-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* Footer trust links (Phase 6) */
+.footer-trust {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.footer-trust a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.footer-trust a:hover {
+  text-decoration: underline;
+}
+
 /* Footer */
 .site-footer {
   padding: var(--space-lg) 0;

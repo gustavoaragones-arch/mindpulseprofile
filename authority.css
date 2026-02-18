@@ -149,6 +149,27 @@
   text-decoration: underline;
 }
 
+/* Footer trust links (Phase 6) */
+.site-footer .footer-trust {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: flex-start;
+}
+
+.site-footer .footer-trust a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.site-footer .footer-trust a:hover {
+  text-decoration: underline;
+}
+
 /* Comparison tables */
 .comparison-table {
   width: 100%;

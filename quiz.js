@@ -259,6 +259,11 @@
       '</div>';
     var pdfHtml = '<div class="content-wrap"><h3 class="pdf-teaser-title">Download Your Profile</h3><p class="pdf-teaser-text">Get a clean, printable version of your snapshot.</p></div>';
 
+    var disclaimerHtml = '<div class="content-wrap">' +
+      '<h3 class="results-disclaimer-title">About Your Results</h3>' +
+      '<p class="results-disclaimer-text">This cognitive-style snapshot reflects response patterns within the quiz framework. It does not diagnose, rank intelligence, or replace professional assessment. Cognitive tendencies are contextual and may vary across situations.</p>' +
+      '</div>';
+
     el.innerHTML =
       '<section id="results">' +
         '<section class="result-hero">' + heroHtml + '</section>' +
@@ -270,6 +275,7 @@
         '<section class="growth-edges">' + growthHtml + '</section>' +
         '<section class="share-block">' + shareHtml + '</section>' +
         '<section class="pdf-teaser">' + pdfHtml + '</section>' +
+        '<section class="results-disclaimer">' + disclaimerHtml + '</section>' +
         '<div class="ad-slot bottom" data-position="bottom"><!-- Future sticky AdSense banner --></div>' +
       '</section>';
     attachShareCopy(el);
