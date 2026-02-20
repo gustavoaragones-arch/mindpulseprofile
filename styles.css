@@ -50,7 +50,7 @@ body {
   padding-right: var(--space-md);
 }
 
-/* Site nav: Quiz | Insights (dropdown) | How It Works */
+/* Site nav: logo in corner, menu opposite */
 .site-nav {
   padding: var(--space-sm) var(--space-md);
   background: var(--bg-section);
@@ -61,31 +61,29 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   gap: var(--space-md);
+  max-width: 100%;
 }
 
-/* Logo: top-left, button accent color */
+/* Logo: corner of screen (logotype only), button accent color */
 .site-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-right: var(--space-md);
   text-decoration: none;
   color: var(--accent);
   font-weight: 600;
   font-size: 1rem;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 .site-logo:hover {
   color: var(--accent-hover);
 }
-.site-logo svg {
-  flex-shrink: 0;
-  width: 1.5rem;
-  height: 1.5rem;
-}
-.site-logo span {
-  white-space: nowrap;
+
+.site-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
 }
 
 .site-nav a {
