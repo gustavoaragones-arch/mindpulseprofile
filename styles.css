@@ -64,6 +64,30 @@ body {
   gap: var(--space-md);
 }
 
+/* Logo: top-left, button accent color */
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: var(--space-md);
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+.site-logo:hover {
+  color: var(--accent-hover);
+}
+.site-logo svg {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.site-logo span {
+  white-space: nowrap;
+}
+
 .site-nav a {
   color: var(--text-muted);
   text-decoration: none;

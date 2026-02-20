@@ -173,14 +173,12 @@
         '<section id="results">' +
           '<section class="result-hero"><div class="content-wrap"><p class="result-hero-text">Complete all 45 questions to see your full snapshot.</p></div></section>' +
           '<section class="personality-pulse"></section>' +
-          '<div class="ad-slot" data-position="mid-1"></div>' +
           '<section class="cognitive-strengths"></section>' +
           '<section class="work-style"></section>' +
-          '<div class="ad-slot" data-position="mid-2"></div>' +
           '<section class="growth-edges"></section>' +
           '<section class="share-block"></section>' +
           '<section class="pdf-teaser"></section>' +
-          '<div class="ad-slot bottom" data-position="bottom"><!-- Future sticky AdSense banner --></div>' +
+          '<section class="results-disclaimer"><div class="content-wrap"><h3 class="results-disclaimer-title">About This Snapshot</h3><p class="results-disclaimer-text">This cognitive-style profile reflects response patterns within the MindPulseProfile framework. It does not diagnose, rank intelligence, or replace professional evaluation. Cognitive tendencies are contextual and may vary across environments.</p></div></section>' +
         '</section>';
     }
     show(el);
@@ -259,24 +257,21 @@
       '</div>';
     var pdfHtml = '<div class="content-wrap"><h3 class="pdf-teaser-title">Download Your Profile</h3><p class="pdf-teaser-text">Get a clean, printable version of your snapshot.</p></div>';
 
-    var disclaimerHtml = '<div class="content-wrap">' +
-      '<h3 class="results-disclaimer-title">About Your Results</h3>' +
-      '<p class="results-disclaimer-text">This cognitive-style snapshot reflects response patterns within the quiz framework. It does not diagnose, rank intelligence, or replace professional assessment. Cognitive tendencies are contextual and may vary across situations.</p>' +
+    var snapshotHtml = '<div class="content-wrap">' +
+      '<h3 class="results-disclaimer-title">About This Snapshot</h3>' +
+      '<p class="results-disclaimer-text">This cognitive-style profile reflects response patterns within the MindPulseProfile framework. It does not diagnose, rank intelligence, or replace professional evaluation. Cognitive tendencies are contextual and may vary across environments.</p>' +
       '</div>';
 
     el.innerHTML =
       '<section id="results">' +
         '<section class="result-hero">' + heroHtml + '</section>' +
         '<section class="personality-pulse">' + personalityHtml + '</section>' +
-        '<div class="ad-slot" data-position="mid-1"><!-- AdSense slot will go here later --></div>' +
         '<section class="cognitive-strengths">' + cognitiveHtml + '</section>' +
         '<section class="work-style">' + workStyleHtml + '</section>' +
-        '<div class="ad-slot" data-position="mid-2"><!-- AdSense slot --></div>' +
         '<section class="growth-edges">' + growthHtml + '</section>' +
         '<section class="share-block">' + shareHtml + '</section>' +
         '<section class="pdf-teaser">' + pdfHtml + '</section>' +
-        '<section class="results-disclaimer">' + disclaimerHtml + '</section>' +
-        '<div class="ad-slot bottom" data-position="bottom"><!-- Future sticky AdSense banner --></div>' +
+        '<section class="results-disclaimer">' + snapshotHtml + '</section>' +
       '</section>';
     attachShareCopy(el);
     animateResultBars(el);
