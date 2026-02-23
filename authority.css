@@ -234,6 +234,12 @@
   background: rgba(240, 238, 235, 0.5);
 }
 
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: var(--space-lg) 0;
+}
+
 @media (max-width: 640px) {
   .cognitive-table { font-size: 0.875rem; }
   .cognitive-table th,
