@@ -1106,3 +1106,55 @@ body {
     --max-width: 44rem;
   }
 }
+
+/* Phase 13: AEO / machine-readable answer blocks (also used on homepage) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.snippet-answer {
+  margin: 0 0 var(--space-md);
+  padding: var(--space-md);
+  background: var(--step-bg, #f8f9fa);
+  border-left: 3px solid var(--accent, #2563eb);
+  line-height: 1.6;
+}
+
+.direct-answer {
+  margin: 0 0 var(--space-md);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+.key-takeaways {
+  margin: 0 0 var(--space-md);
+  padding-left: 1.25rem;
+  line-height: 1.65;
+}
+
+.key-takeaways li {
+  margin-bottom: 0.35rem;
+}
+
+.semantic-reinforcement {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-lg);
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.aeo-landing h2 {
+  font-size: 1.125rem;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xs);
+}

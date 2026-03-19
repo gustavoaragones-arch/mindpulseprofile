@@ -55,6 +55,23 @@
   line-height: 1.65;
 }
 
+/* Phase 13: direct answer & extraction anchors */
+.authority-main .direct-answer {
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  margin-bottom: var(--space-md);
+}
+
+.authority-main .key-takeaways {
+  margin-bottom: var(--space-md);
+}
+
+.authority-main .semantic-reinforcement {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  margin-top: var(--space-lg);
+}
+
 .authority-main ul, .authority-main ol {
   margin: 0 0 var(--space-md);
   padding-left: 1.5rem;

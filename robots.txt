@@ -1,5 +1,16 @@
 User-agent: *
 Allow: /
 
-# Replace with your live site URL if different (e.g. https://gustavoaragones-arch.github.io/mindpulseprofile/)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
 Sitemap: https://mindpulseprofile.com/sitemap.xml
