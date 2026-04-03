@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Phase 13.5: canonical URLs (trailing slash), robots meta, internal <a href>, regenerate sitemap."""
+"""Phase 13.5: HTTPS canonicals, robots meta, internal <a href>, sitemap.
+
+Trailing slash only for directory-style URLs (/about/). Literal *.html files have
+no trailing slash so static servers (GitHub Pages, http.server) resolve them."""
 from __future__ import annotations
 
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, urlunparse
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "https://mindpulseprofile.com"
@@ -39,6 +42,19 @@ ROBOTS_RE = re.compile(
 A_HREF_RE = re.compile(r'(<a\b[^>]*\bhref=")([^"]+)(")', re.I)
 
 
+def squeeze_canonical_url(url: str) -> str:
+    """Collapse duplicate slashes in path (never break https://)."""
+    if "mindpulseprofile.com" not in url:
+        return url
+    p = urlparse(url)
+    path = re.sub(r"/+", "/", p.path or "/")
+    if path == "":
+        path = "/"
+    return urlunparse(
+        (p.scheme or "https", p.netloc, path, p.params, p.query, p.fragment)
+    )
+
+
 def iter_html_files():
     for p in sorted(ROOT.rglob("*.html")):
         parts = set(p.parts)
@@ -54,13 +70,14 @@ def rel_posix(path: Path) -> str:
 def expected_canonical_url(rel: str) -> str:
     rel = rel.replace("\\", "/")
     if rel == "index.html":
-        return f"{BASE}/"
-    if rel.endswith("/index.html"):
+        u = f"{BASE}/"
+    elif rel.endswith("/index.html"):
         parent = rel[: -len("index.html")].rstrip("/")
-        if not parent:
-            return f"{BASE}/"
-        return f"{BASE}/{parent}/"
-    return f"{BASE}/{rel}/"
+        u = f"{BASE}/" if not parent else f"{BASE}/{parent}/"
+    else:
+        # e.g. how-your-mind-works.html — no trailing slash (real file on disk)
+        u = f"{BASE}/{rel}"
+    return squeeze_canonical_url(u)
 
 
 def page_base_url(rel: str) -> str:
@@ -96,12 +113,31 @@ def collapse_index_html_path(path: str) -> str:
     return p
 
 
+def normalize_site_path(path: str) -> str:
+    """Root-relative path: / for home, /dir/ for folders, /file.html for html files."""
+    path = path or "/"
+    path = re.sub(r"/+", "/", path)
+    if path == "":
+        path = "/"
+    if path.endswith(".html/"):
+        path = path[:-1]
+    if path in ("", "/"):
+        return "/"
+    if path == "/index.html" or path.endswith("/index.html"):
+        return collapse_index_html_path(path)
+    if path.lower().endswith(".html"):
+        return path
+    if not path.endswith("/"):
+        return path + "/"
+    return path
+
+
 def full_url_to_root_relative(full: str) -> str | None:
     p = urlparse(full)
     if p.scheme in ("http", "https") and p.netloc:
         if p.netloc != "mindpulseprofile.com":
             return None
-        path = collapse_index_html_path(p.path or "/")
+        path = normalize_site_path(p.path or "/")
         q = ("?" + p.query) if p.query else ""
         frag = ("#" + p.fragment) if p.fragment else ""
         return path + q + frag
@@ -134,6 +170,7 @@ def normalize_href(href: str, page_rel: str) -> str:
 
 
 def ensure_canonical(html: str, url: str) -> str:
+    url = squeeze_canonical_url(url)
     tag_line = f'  <link rel="canonical" href="{url}">\n'
     if CANONICAL_RE.search(html):
         return CANONICAL_RE.sub(tag_line.rstrip("\n"), html, count=1)

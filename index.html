@@ -43,12 +43,12 @@
       <div class="nav-dropdown">
         <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="insights-menu">Insights</button>
         <ul class="nav-dropdown-menu" id="insights-menu" role="menu">
-          <li><a href="/how-your-mind-works.html/" role="menuitem">How Your Mind Works</a></li>
-          <li><a href="/thinking-style-explained.html/" role="menuitem">Thinking Style</a></li>
-          <li><a href="/personality-vs-thinking-style.html/" role="menuitem">Personality vs Thinking</a></li>
-          <li><a href="/what-is-cognitive-style.html/" role="menuitem">Cognitive Style</a></li>
-          <li><a href="/decision-making-and-personality.html/" role="menuitem">Decision-Making</a></li>
-          <li><a href="/curious-vs-disciplined-minds.html/" role="menuitem">Curious vs Disciplined</a></li>
+          <li><a href="/how-your-mind-works.html" role="menuitem">How Your Mind Works</a></li>
+          <li><a href="/thinking-style-explained.html" role="menuitem">Thinking Style</a></li>
+          <li><a href="/personality-vs-thinking-style.html" role="menuitem">Personality vs Thinking</a></li>
+          <li><a href="/what-is-cognitive-style.html" role="menuitem">Cognitive Style</a></li>
+          <li><a href="/decision-making-and-personality.html" role="menuitem">Decision-Making</a></li>
+          <li><a href="/curious-vs-disciplined-minds.html" role="menuitem">Curious vs Disciplined</a></li>
         </ul>
       </div>
       <a href="#how-heading">How It Works</a>
@@ -152,9 +152,10 @@
 
     <section class="quiz-placeholder" id="quiz-container" aria-labelledby="quiz-heading">
       <div class="content-wrap">
-        <h2 id="quiz-heading">The Quiz</h2>
-        <a href="#quiz-engine-placeholder" class="cta quiz-section-cta" id="cta-quiz-section">Start the 6-Minute Quiz</a>
-        <p class="quiz-intro">When you're ready, use the button below to begin.</p>
+        <div class="quiz-placeholder-lead">
+          <h2 id="quiz-heading">The Quiz</h2>
+          <p class="quiz-intro">When you're ready, use the button below to begin.</p>
+        </div>
         <div class="quiz-engine-placeholder" id="quiz-engine-placeholder" aria-live="polite">
           <!-- Quiz start, progress, questions, teaser, and results are injected by quiz.js -->
         </div>
@@ -191,16 +192,6 @@
         }
       });
     }
-    var ctaQuizSection = document.getElementById('cta-quiz-section');
-    if (ctaQuizSection) {
-      ctaQuizSection.addEventListener('click', function (e) {
-        var target = document.getElementById('quiz-engine-placeholder');
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      });
-    }
   </script>
 <!-- MindPulseProfile entity (Phase 13) -->
 <script type="application/ld+json">
@@ -222,5 +213,6 @@
 }
 </script>
 
+  <script src="/path-guard.js" defer></script>
 </body>
 </html>

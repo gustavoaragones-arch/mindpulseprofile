@@ -211,8 +211,14 @@ body {
   padding-bottom: clamp(2.75rem, 5vw, 4rem);
 }
 
-.index-page .quiz-section-cta {
-  margin-bottom: var(--space-md);
+.index-page .quiz-placeholder-lead {
+  text-align: center;
+}
+
+.index-page .quiz-placeholder-lead .quiz-intro {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 28rem;
 }
 
 /* Positioning */

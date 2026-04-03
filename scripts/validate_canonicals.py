@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Validate one HTTPS canonical per HTML page, trailing slash, robots meta."""
+"""Validate HTTPS canonicals, robots meta, sitemap (directory URLs / ; *.html no slash)."""
 from __future__ import annotations
 
 import re
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from urllib.parse import urlparse, urlunparse
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "https://mindpulseprofile.com"
@@ -32,19 +33,44 @@ def rel_posix(path: Path) -> str:
     return path.relative_to(ROOT).as_posix()
 
 
+def squeeze_canonical_url(url: str) -> str:
+    if "mindpulseprofile.com" not in url:
+        return url
+    p = urlparse(url)
+    path = re.sub(r"/+", "/", p.path or "/")
+    if path == "":
+        path = "/"
+    return urlunparse(
+        (p.scheme or "https", p.netloc, path, p.params, p.query, p.fragment)
+    )
+
+
 def expected_canonical_url(rel: str) -> str:
     rel = rel.replace("\\", "/")
     if rel == "index.html":
-        return f"{BASE}/"
-    if rel.endswith("/index.html"):
+        u = f"{BASE}/"
+    elif rel.endswith("/index.html"):
         parent = rel[: -len("index.html")].rstrip("/")
-        if not parent:
-            return f"{BASE}/"
-        return f"{BASE}/{parent}/"
-    return f"{BASE}/{rel}/"
+        u = f"{BASE}/" if not parent else f"{BASE}/{parent}/"
+    else:
+        u = f"{BASE}/{rel}"
+    return squeeze_canonical_url(u)
 
 
 NS = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+
+
+def url_path_rule_ok(path_part: str) -> tuple[bool, str]:
+    """Home / ; *.html no trailing slash ; directories end with /."""
+    if path_part in ("/", ""):
+        return True, ""
+    if path_part.endswith(".html/"):
+        return False, "must not use trailing slash after .html"
+    if path_part.endswith(".html"):
+        return True, ""
+    if path_part.endswith("/"):
+        return True, ""
+    return False, "directory URLs must end with /"
 
 
 def validate_sitemap(expected_locs: set[str]) -> list[str]:
@@ -67,8 +93,9 @@ def validate_sitemap(expected_locs: set[str]) -> list[str]:
         if not loc.startswith(f"{BASE}/") and loc != f"{BASE}/":
             err.append(f"sitemap: loc not under {BASE}/: {loc}")
         path_part = loc[len(BASE) :] if loc.startswith(BASE) else ""
-        if path_part != "/" and path_part and not path_part.endswith("/"):
-            err.append(f"sitemap: loc must end with /: {loc}")
+        ok_pp, msg_pp = url_path_rule_ok(path_part)
+        if not ok_pp:
+            err.append(f"sitemap: {msg_pp}: {loc}")
     if len(locs) != len(set(locs)):
         err.append("sitemap: duplicate <loc> entries")
     missing = expected_locs - set(locs)
@@ -103,8 +130,9 @@ def main() -> int:
         if not got.startswith(f"{BASE}/") and got != f"{BASE}/":
             errors.append(f"{rel}: canonical must be under {BASE}/")
         path_part = got[len(BASE) :] if got.startswith(BASE) else ""
-        if path_part != "/" and not path_part.endswith("/"):
-            errors.append(f"{rel}: canonical URL must end with /")
+        ok_pp, msg_pp = url_path_rule_ok(path_part)
+        if not ok_pp:
+            errors.append(f"{rel}: canonical {msg_pp}")
 
         rm = ROBOTS_RE.search(text)
         if not rm:
