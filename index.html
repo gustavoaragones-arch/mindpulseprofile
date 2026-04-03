@@ -34,7 +34,7 @@
 </script>
 
 </head>
-<body>
+<body class="index-page">
   <nav class="site-nav" aria-label="Main">
     <div class="site-nav-inner">
       <a class="site-logo" href="/" aria-label="MindPulseProfile home">MindPulseProfile</a>
@@ -64,34 +64,30 @@
     </div>
   </header>
 
-  <main>
+  <main class="home-main">
     <section class="positioning aeo-landing" aria-labelledby="aeo-snippet-heading">
       <div class="content-wrap">
         <h2 id="aeo-snippet-heading" class="visually-hidden">Overview</h2>
-        <p class="snippet-answer">MindPulseProfile (by Albor Digital LLC) is a free, private quiz that snapshots how you tend to think and relate—personality tendencies plus cognitive-style preferences. It is for self-reflection, not diagnosis or hiring.</p>
+        <p class="snippet-answer">MindPulseProfile is a free, private quiz that snapshots how you tend to think and relate—personality tendencies plus cognitive-style preferences. It is for self-reflection, not diagnosis or hiring.</p>
         <h2>Quick Answer</h2>
         <p class="direct-answer">You answer 45 short questions and see a profile in your browser. No account, no server storage, no intelligence score.</p>
         <h2>Key Takeaways</h2>
         <ul class="key-takeaways">
           <li>Combines simplified personality dimensions with thinking-style leanings.</li>
           <li>Designed for clarity and practical reflection.</li>
-          <li>Not a clinical test and not a measure of IQ.</li>
+          <li>Free to use with no sign-up; results stay in your browser for this version.</li>
           <li>Educational articles explain cognitive style and team dynamics.</li>
         </ul>
         <h2>What does MindPulseProfile measure?</h2>
-        <p>Tendencies in how you engage the world and how you process information—not fixed labels or ability rankings.</p>
-        <h2>Is my data stored on a server?</h2>
-        <p>No. Answers and results stay in your browser for this implementation.</p>
-        <h2>Who publishes MindPulseProfile?</h2>
-        <p>MindPulseProfile (by Albor Digital LLC), an independent product studio in Wyoming, USA.</p>
+        <p>Tendencies in how you process information and engage with the world—expressed as patterns, not fixed labels.</p>
       </div>
     </section>
 
     <section class="positioning" aria-labelledby="positioning-heading">
       <div class="content-wrap">
         <h2 id="positioning-heading">What This Is — and Isn’t</h2>
-        <p>MindPulseProfile is a practical snapshot of how you tend to think and relate to the world. It is not a diagnosis, not an official intelligence test, and not a fixed personality label. The questions and results are inspired by established psychological models, simplified for quick self-reflection. Use it as a starting point for curiosity, not as a clinical or professional assessment.</p>
-        <p class="positioning-tone">We keep the tone analytical and credible. No hype, no buzz — just a clear picture you can use to reflect on your own patterns.</p>
+        <p>MindPulseProfile is a practical snapshot of how you tend to think and relate to the world. The questions and results are inspired by established psychological models, simplified for quick self-reflection. Use it to spark curiosity and notice your own patterns.</p>
+        <p class="positioning-tone">We keep the tone analytical and credible—no hype, just a clear picture you can use for reflection.</p>
       </div>
     </section>
 
@@ -117,7 +113,7 @@
             <span class="step-num" aria-hidden="true">3</span>
             <div class="step-content">
               <h3>Get your full profile instantly</h3>
-              <p>Results in your browser, no wait.</p>
+              <p>Your snapshot appears as soon as you finish—no wait.</p>
             </div>
           </li>
         </ol>
@@ -148,25 +144,28 @@
       </div>
     </section>
 
+    <section class="home-semantic" aria-label="Related topics">
+      <div class="content-wrap">
+        <p class="semantic-reinforcement">Cognitive style, personality tendencies, thinking patterns, and decision-making preferences are related concepts explored across MindPulseProfile. Logical reasoning, structured problem-solving, and behavioral frameworks appear throughout the resource library.</p>
+      </div>
+    </section>
+
     <section class="quiz-placeholder" id="quiz-container" aria-labelledby="quiz-heading">
       <div class="content-wrap">
         <h2 id="quiz-heading">The Quiz</h2>
-        <p class="quiz-intro">Click below to begin. Your answers are not sent to any server and are not stored.</p>
+        <a href="#quiz-engine-placeholder" class="cta quiz-section-cta" id="cta-quiz-section">Start the 6-Minute Quiz</a>
+        <p class="quiz-intro">When you're ready, use the button below to begin.</p>
         <div class="quiz-engine-placeholder" id="quiz-engine-placeholder" aria-live="polite">
           <!-- Quiz start, progress, questions, teaser, and results are injected by quiz.js -->
         </div>
       </div>
     </section>
-    <p class="semantic-reinforcement">Cognitive style, personality tendencies, thinking patterns, and decision-making preferences are related concepts explored across MindPulseProfile (by Albor Digital LLC). Logical reasoning, structured problem-solving, and behavioral frameworks appear throughout the resource library.</p>
   </main>
 
   <footer class="site-footer">
     <div class="content-wrap">
-      <p>
-© 2026 MindPulseProfile (by Albor Digital LLC). All rights reserved.<br>
-An independent product studio based in Wyoming, USA.
-</p>
-      <p>Contact: <a href="mailto:contact@mindpulseprofile.com">contact@mindpulseprofile.com</a></p>
+      <p class="site-footer-legal">© 2026 MindPulseProfile (by Albor Digital LLC). All rights reserved.<br>
+      Contact: <a href="mailto:contact@mindpulseprofile.com">contact@mindpulseprofile.com</a></p>
       <nav class="footer-trust" aria-label="Trust and transparency">
         <a href="/methodology/">Methodology</a>
         <a href="/editorial-standards/">Editorial Standards</a>
@@ -182,13 +181,26 @@ An independent product studio based in Wyoming, USA.
   <script src="app.js"></script>
   <script src="quiz.js"></script>
   <script>
-    document.getElementById('cta-start').addEventListener('click', function(e) {
-      var target = document.getElementById('quiz-container');
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+    var ctaStart = document.getElementById('cta-start');
+    if (ctaStart) {
+      ctaStart.addEventListener('click', function (e) {
+        var target = document.getElementById('quiz-container');
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+    var ctaQuizSection = document.getElementById('cta-quiz-section');
+    if (ctaQuizSection) {
+      ctaQuizSection.addEventListener('click', function (e) {
+        var target = document.getElementById('quiz-engine-placeholder');
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    }
   </script>
 <!-- MindPulseProfile entity (Phase 13) -->
 <script type="application/ld+json">

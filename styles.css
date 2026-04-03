@@ -205,6 +205,16 @@ body {
   outline-offset: 2px;
 }
 
+/* Homepage: consistent vertical rhythm between major sections */
+.index-page main.home-main > section {
+  padding-top: clamp(2.75rem, 5vw, 4rem);
+  padding-bottom: clamp(2.75rem, 5vw, 4rem);
+}
+
+.index-page .quiz-section-cta {
+  margin-bottom: var(--space-md);
+}
+
 /* Positioning */
 .positioning {
   padding: var(--space-xl) 0;

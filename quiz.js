@@ -29,8 +29,8 @@
     if (!container) return;
     container.innerHTML =
       '<div class="quiz-start quiz-visible" id="quiz-start">' +
-        '<p class="quiz-start-text">45 short questions. One at a time. Your answers stay in your browser.</p>' +
-        '<button type="button" class="cta quiz-cta" id="quiz-btn-begin">Begin the quiz</button>' +
+        '<p class="quiz-start-text">45 questions, one at a time.</p>' +
+        '<button type="button" class="cta quiz-cta" id="quiz-btn-begin">Begin</button>' +
       '</div>';
     byId('quiz-btn-begin').addEventListener('click', beginQuiz);
   }
