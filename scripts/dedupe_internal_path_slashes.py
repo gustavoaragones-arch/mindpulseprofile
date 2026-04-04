@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Collapse duplicate slashes in root-relative hrefs and mindpulseprofile.com URLs; inject path-guard."""
+"""Collapse duplicate slashes in root-relative hrefs and mindpulseprofile.com canonical URLs."""
 from __future__ import annotations
 
 import re
@@ -12,8 +12,6 @@ CANONICAL_RE = re.compile(
     r'(<link\s+rel="canonical"\s+href=")([^"]+)(")',
     re.I,
 )
-BODY_CLOSE = re.compile(r"</body>", re.I)
-GUARD_LINE = '  <script src="/path-guard.js" defer></script>\n'
 
 
 def squeeze_root_href(value: str) -> str:
@@ -75,15 +73,6 @@ def process_html(path: Path) -> bool:
         return m.group(1) + squeeze_absolute_mp_url(m.group(2)) + m.group(3)
 
     text = CANONICAL_RE.sub(canon_repl, text)
-
-    if 'path-guard.js' not in text:
-
-        def inject_body(m: re.Match) -> str:
-            return GUARD_LINE + m.group(0)
-
-        text, n = BODY_CLOSE.subn(inject_body, text, count=1)
-        if n == 0:
-            pass
 
     if text != orig:
         path.write_text(text, encoding="utf-8")
