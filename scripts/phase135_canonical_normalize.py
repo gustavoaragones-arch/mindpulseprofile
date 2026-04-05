@@ -285,6 +285,36 @@ def write_sitemap(paths: list[Path]) -> None:
     tree.write(out, encoding="utf-8", xml_declaration=True)
 
 
+ES_SITEMAP_RELS = frozenset(
+    {
+        "es/index.html",
+        "es/glosario-estilo-cognitivo/index.html",
+        "es/matriz-estilo-cognitivo/index.html",
+        "es/desalineacion-cognitiva/index.html",
+        "es/pensador-analitico/index.html",
+        "es/pensador-creativo/index.html",
+        "es/pensador-estrategico/index.html",
+        "es/pensador-intuitivo/index.html",
+        "es/estructurado-vs-flexible/index.html",
+        "es/largo-vs-corto-plazo/index.html",
+        "es/estilo-analitico-en-conflictos/index.html",
+        "es/liderazgo-creativo-equipos/index.html",
+        "es/por-que-personas-estrategicas-parecen-calmas/index.html",
+    }
+)
+
+
+def iter_sitemap_paths(paths: list[Path]) -> list[Path]:
+    """List only approved /es/* URLs in sitemap (Phase 14.2 cluster)."""
+    out: list[Path] = []
+    for path in paths:
+        rel = rel_posix(path)
+        if rel.startswith("es/") and rel not in ES_SITEMAP_RELS:
+            continue
+        out.append(path)
+    return out
+
+
 def main():
     updated = []
     paths = list(iter_html_files())
@@ -292,10 +322,11 @@ def main():
         rel = rel_posix(path)
         if process_html(path):
             updated.append(rel)
-    write_sitemap(paths)
+    sm_paths = iter_sitemap_paths(paths)
+    write_sitemap(sm_paths)
     for u in updated:
         print("updated:", u)
-    print("sitemap URLs:", len(paths))
+    print("sitemap URLs:", len(sm_paths))
     print("html updated:", len(updated))
 
 

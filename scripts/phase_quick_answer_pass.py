@@ -13,7 +13,6 @@ SKIP = {
     "privacy-policy/index.html",
     "terms-of-service/index.html",
     "about/index.html",
-    "author/gustavo-aragones/index.html",
     "editorial-standards/index.html",
 }
 

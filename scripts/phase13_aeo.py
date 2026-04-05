@@ -84,9 +84,8 @@ def inject_article_author(html: str) -> str:
         if "author" in data:
             return m.group(0)
         data["author"] = {
-            "@type": "Person",
-            "name": "Gustavo Aragones",
-            "url": "https://mindpulseprofile.com/author/gustavo-aragones/",
+            "@type": "Organization",
+            "name": "Albor Digital LLC",
         }
         new_body = json.dumps(data, ensure_ascii=False, indent=2)
         return f'{open_tag}\n{new_body}\n  {close_tag}'
