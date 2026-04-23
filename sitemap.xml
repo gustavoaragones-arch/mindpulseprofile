@@ -247,6 +247,30 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://mindpulseprofile.com/es/resultados/analitico/</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mindpulseprofile.com/es/resultados/creativo/</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mindpulseprofile.com/es/resultados/estrategico/</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mindpulseprofile.com/es/resultados/intuitivo/</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://mindpulseprofile.com/es/test/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
@@ -332,6 +356,30 @@
   </url>
   <url>
     <loc>https://mindpulseprofile.com/relationship-styles/independent-partner.html</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mindpulseprofile.com/results/analytical/</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mindpulseprofile.com/results/creative/</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mindpulseprofile.com/results/intuitive/</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mindpulseprofile.com/results/strategic/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

@@ -21,6 +21,34 @@
   function byId(id) { return document.getElementById(id); }
 
   /** Spanish hub: show a one-line hint on results when quiz was entered from /es/ */
+  var COGNITIVE_STYLE_ES_PATH = {
+    analytical: 'analitico',
+    creative: 'creativo',
+    strategic: 'estrategico',
+    intuitive: 'intuitivo'
+  };
+
+  function getSpanishResultsPathForCognitive(cognitive) {
+    if (typeof window.MPP_getCognitiveStylePageKey !== 'function' || !cognitive) return '/es/resultados/intuitivo/';
+    var key = window.MPP_getCognitiveStylePageKey(cognitive);
+    var slug = COGNITIVE_STYLE_ES_PATH[key] || 'intuitivo';
+    return '/es/resultados/' + slug + '/';
+  }
+
+  function maybeRedirectToSpanishResults(result) {
+    if (!result || !result.cognitive) return false;
+    try {
+      if (localStorage.getItem('mpp_pref_results_lang') !== 'es') return false;
+    } catch (e) {
+      return false;
+    }
+    if (typeof window.MPP_getCognitiveStylePageKey !== 'function') return false;
+    var key = window.MPP_getCognitiveStylePageKey(result.cognitive);
+    var slug = COGNITIVE_STYLE_ES_PATH[key] || 'intuitivo';
+    window.location.replace('/es/resultados/' + slug + '/');
+    return true;
+  }
+
   function shouldShowEsResultsBanner() {
     try {
       if (/[?&]from=es(?:&|#|$)/.test(window.location.search || '')) return true;
@@ -184,6 +212,7 @@
     hide(byId('quiz-questions-wrap'));
     var el = byId('quiz-results-placeholder');
     if (result && result.personality && result.cognitive) {
+      if (maybeRedirectToSpanishResults(result)) return;
       renderResultsPage(el, result);
     } else {
       el.innerHTML =
@@ -214,10 +243,14 @@
     var archDesc = (arch && arch.descriptor) ? arch.descriptor : (typeof arch === 'string' ? arch.split(' — ')[1] || '' : '');
     var summary = result.summary || '';
 
+    var esResultsPath = getSpanishResultsPathForCognitive(c);
+    var langSwitchHtml = '<p class="result-lang-switch"><a class="cta cta-secondary" href="' + escapeHtml(esResultsPath) + '">Ver en español</a> <span class="result-lang-switch-meta">Misma orientación, guía en español.</span></p>';
+
     var heroHtml = '<div class="content-wrap">' +
       '<h2 class="result-hero-title">You\'re a ' + escapeHtml(archName) + '</h2>' +
       '<p class="result-hero-subheading">' + escapeHtml(archDesc) + '</p>' +
       '<p class="result-hero-summary">' + escapeHtml(summary) + '</p>' +
+      langSwitchHtml +
       '</div>';
 
     var traitSummaries = result.traitSummaries || {};

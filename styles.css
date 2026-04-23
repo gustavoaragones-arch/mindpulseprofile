@@ -784,6 +784,47 @@ body {
   padding-bottom: var(--space-xl);
 }
 
+.result-lang-switch {
+  margin-top: var(--space-md);
+}
+
+.result-lang-switch .cta-secondary {
+  display: inline-block;
+  background: transparent;
+  color: var(--accent, #1a5f4a);
+  border: 2px solid currentColor;
+}
+
+.result-lang-switch .cta-secondary:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.result-lang-switch-meta {
+  display: block;
+  margin-top: var(--space-xs);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.lang-bridge {
+  margin: 0.5rem 0 1.25rem;
+}
+
+.results-trust-note {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  border-left: 3px solid var(--border);
+  padding: 0.5rem 0 0.5rem 1rem;
+  margin: var(--space-md) 0;
+}
+
+.results-trust-fine {
+  font-size: 0.875rem;
+  border-left: none;
+  padding-left: 0;
+}
+
 #results > .ad-slot {
   min-height: 2rem;
   margin: var(--space-xl) 0;

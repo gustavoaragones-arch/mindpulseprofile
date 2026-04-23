@@ -368,7 +368,26 @@
     return out;
   }
 
+  /**
+   * Map cognitive axis scores to a static "thinking style" page slug (EN /results/, ES /es/resultados/).
+   * Used for language switch links after the quiz; not a second scoring model.
+   */
+  function getCognitiveStylePageKey(cognitive) {
+    if (!cognitive) return 'intuitive';
+    var p = cognitive.pattern != null ? cognitive.pattern : 50;
+    var v = cognitive.verbal != null ? cognitive.verbal : 50;
+    var s = cognitive.strategic != null ? cognitive.strategic : 50;
+    var max = Math.max(p, v, s);
+    var min = Math.min(p, v, s);
+    if (max - min <= 12) return 'intuitive';
+    if (p >= v && p >= s) return 'analytical';
+    if (s >= p && s >= v) return 'strategic';
+    if (v >= p && v >= s) return 'creative';
+    return 'intuitive';
+  }
+
   window.MPP_runScoring = runScoring;
   window.MPP_computePersonality = computePersonality;
   window.MPP_computeCognitive = computeCognitive;
+  window.MPP_getCognitiveStylePageKey = getCognitiveStylePageKey;
 })();

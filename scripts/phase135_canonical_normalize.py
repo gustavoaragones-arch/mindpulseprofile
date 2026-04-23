@@ -301,6 +301,10 @@ ES_SITEMAP_RELS = frozenset(
         "es/liderazgo-creativo-equipos/index.html",
         "es/por-que-personas-estrategicas-parecen-calmas/index.html",
         "es/test/index.html",
+        "es/resultados/analitico/index.html",
+        "es/resultados/creativo/index.html",
+        "es/resultados/estrategico/index.html",
+        "es/resultados/intuitivo/index.html",
     }
 )
 
