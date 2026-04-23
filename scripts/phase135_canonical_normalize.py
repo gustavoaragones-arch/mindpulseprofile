@@ -300,6 +300,7 @@ ES_SITEMAP_RELS = frozenset(
         "es/estilo-analitico-en-conflictos/index.html",
         "es/liderazgo-creativo-equipos/index.html",
         "es/por-que-personas-estrategicas-parecen-calmas/index.html",
+        "es/test/index.html",
     }
 )
 

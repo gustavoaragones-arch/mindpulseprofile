@@ -20,6 +20,23 @@
 
   function byId(id) { return document.getElementById(id); }
 
+  /** Spanish hub: show a one-line hint on results when quiz was entered from /es/ */
+  function shouldShowEsResultsBanner() {
+    try {
+      if (/[?&]from=es(?:&|#|$)/.test(window.location.search || '')) return true;
+    } catch (e) {}
+    try {
+      var ref = document.referrer || '';
+      if (/mindpulseprofile\.com\/es\//i.test(ref)) return true;
+    } catch (e2) {}
+    return false;
+  }
+
+  function spanishResultsBannerHtml() {
+    if (!shouldShowEsResultsBanner()) return '';
+    return '<aside class="quiz-results-es-banner" role="note"><p class="quiz-results-es-banner-text">Puedes traducir esta página automáticamente al español usando tu navegador.</p></aside>';
+  }
+
   function show(el) { if (el) el.classList.add('quiz-visible'); }
   function hide(el) { if (el) el.classList.remove('quiz-visible'); }
   function addClass(el, c) { if (el) el.classList.add(c); }
@@ -171,6 +188,7 @@
     } else {
       el.innerHTML =
         '<section id="results">' +
+          spanishResultsBannerHtml() +
           '<section class="result-hero"><div class="content-wrap"><p class="result-hero-text">Complete all 45 questions to see your full snapshot.</p></div></section>' +
           '<section class="personality-pulse"></section>' +
           '<section class="cognitive-strengths"></section>' +
@@ -264,6 +282,7 @@
 
     el.innerHTML =
       '<section id="results">' +
+        spanishResultsBannerHtml() +
         '<section class="result-hero">' + heroHtml + '</section>' +
         '<section class="personality-pulse">' + personalityHtml + '</section>' +
         '<section class="cognitive-strengths">' + cognitiveHtml + '</section>' +

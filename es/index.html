@@ -45,7 +45,7 @@
       <a class="site-logo" href="/es/" aria-label="MindPulseProfile inicio">MindPulseProfile</a>
       <div class="site-nav-menu">
       <a href="/es/">Inicio</a>
-      <a href="/es/#quiz-container">Cuestionario</a>
+      <a href="/es/test/">Cuestionario</a>
       <div class="nav-dropdown">
         <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="es-core-menu">Contenido</button>
         <ul class="nav-dropdown-menu" id="es-core-menu" role="menu">
@@ -55,6 +55,7 @@
         </ul>
       </div>
       <a href="/es/#how-heading">Cómo funciona</a>
+      <span class="lang-switch" role="navigation" aria-label="Idioma"><a href="/quiz/" hreflang="en">EN</a><span class="lang-switch-sep" aria-hidden="true"> | </span><a href="/es/" hreflang="es">ES</a></span>
       </div>
     </div>
   </nav>
@@ -64,7 +65,7 @@
       <p class="lang-equivalence"><strong>Esta página es la versión en español del contenido original en inglés.</strong></p>
       <p class="hero-subhead">Una instantánea rápida y gratuita de tu personalidad y tu estilo de pensamiento.</p>
       <p class="hero-trust">Sin cuentas. Sin rastreo. Tus respuestas permanecen en tu navegador.</p>
-      <a href="/es/#quiz-container" class="cta" id="cta-start">Comenzar el test de 6 minutos</a>
+      <a href="/es/test/" class="cta" id="cta-start">Comenzar el test de 6 minutos</a>
     </div>
   </header>
 
@@ -96,7 +97,7 @@
               <tr><th>Ámbito</th><th>Qué obtienes</th><th>Dónde profundizar</th></tr>
             </thead>
             <tbody>
-              <tr><td>Autoconocimiento</td><td>Resumen en el navegador</td><td><a href="/es/glosario-estilo-cognitivo/">Glosario</a> y <a href="/es/#quiz-container">cuestionario</a></td></tr>
+              <tr><td>Autoconocimiento</td><td>Resumen en el navegador</td><td><a href="/es/glosario-estilo-cognitivo/">Glosario</a> y <a href="/es/test/">cuestionario</a></td></tr>
               <tr><td>Equipos</td><td>Lenguaje compartido</td><td><a href="/es/matriz-estilo-cognitivo/">Matriz</a> y <a href="/es/desalineacion-cognitiva/">Desalineación</a></td></tr>
               <tr><td>Situaciones tensas</td><td>Patrones de roce</td><td><a href="/es/estilo-analitico-en-conflictos/">Conflictos</a> y <a href="/es/liderazgo-creativo-equipos/">Liderazgo creativo</a></td></tr>
             </tbody>
@@ -173,14 +174,13 @@
       </div>
     </section>
 
-    <section class="quiz-placeholder" id="quiz-container" aria-labelledby="quiz-heading">
+    <section class="quiz-placeholder es-quiz-bridge" id="quiz-container" aria-labelledby="quiz-heading">
       <div class="content-wrap">
         <div class="quiz-placeholder-lead">
           <h2 id="quiz-heading">El cuestionario</h2>
-          <p class="quiz-intro">Cuando quieras, usa el botón de arriba o el de abajo para empezar.</p>
+          <p class="quiz-intro">Las preguntas del test están en inglés; antes de empezar, la página del test en español resume qué esperar y cuánto dura.</p>
         </div>
-        <div class="quiz-engine-placeholder" id="quiz-engine-placeholder" aria-live="polite">
-        </div>
+        <p class="es-quiz-bridge-cta"><a href="/es/test/" class="cta">Ir a la página del test</a></p>
       </div>
     </section>
 
@@ -220,25 +220,11 @@
         <a href="/es/estilo-analitico-en-conflictos/">Analítico en conflictos</a>
         <a href="/es/liderazgo-creativo-equipos/">Liderazgo creativo</a>
         <a href="/es/por-que-personas-estrategicas-parecen-calmas/">Calma estratégica</a>
+        <a href="/es/test/">Test</a>
       </nav>
     </div>
   </footer>
 
-  <script src="/quiz-data.js"></script>
-  <script src="/app.js"></script>
-  <script src="/quiz.js"></script>
-  <script>
-    var ctaStart = document.getElementById('cta-start');
-    if (ctaStart) {
-      ctaStart.addEventListener('click', function (e) {
-        var target = document.getElementById('quiz-container');
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    }
-  </script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",

@@ -717,6 +717,73 @@ body {
   padding-top: var(--space-lg);
 }
 
+#results > .quiz-results-es-banner + .result-hero {
+  padding-top: var(--space-xl);
+}
+
+.quiz-results-es-banner {
+  max-width: 42rem;
+  margin: var(--space-lg) auto 0;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.quiz-results-es-banner-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+/* Spanish quiz bridge (/es/test/) and home bridge */
+.es-test-landing .es-test-intro {
+  font-size: 1.125rem;
+  line-height: 1.55;
+  max-width: 36rem;
+}
+
+.es-test-landing .es-test-cta-wrap {
+  margin: var(--space-xl) 0;
+}
+
+.es-test-expectations {
+  margin: var(--space-lg) 0;
+  padding-left: 1.25rem;
+  max-width: 32rem;
+  line-height: 1.6;
+}
+
+.es-test-hint {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  max-width: 36rem;
+  margin-bottom: var(--space-xl);
+}
+
+.es-test-trust {
+  margin: var(--space-md) 0 var(--space-xl);
+  padding-left: 1.25rem;
+  max-width: 36rem;
+  line-height: 1.6;
+}
+
+.es-test-more {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  max-width: 38rem;
+}
+
+.es-quiz-bridge .es-quiz-bridge-cta {
+  margin: var(--space-lg) 0 0;
+}
+
+.quiz-page-hero {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
 #results > .ad-slot {
   min-height: 2rem;
   margin: var(--space-xl) 0;
